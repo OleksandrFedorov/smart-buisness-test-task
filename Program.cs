@@ -13,8 +13,7 @@ namespace TestTask
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var connectionString = builder.Configuration.GetSection("Database").GetValue<string>("ConnectionString"); 
-            builder.Services.AddDbContext<TestTaskDbContext>(x => x.UseSqlServer(builder.Configuration["Database:ConnectionString"]));
+            builder.Services.AddDbContext<TestTaskDbContext>(x => x.UseSqlServer(builder.Configuration.GetValue<string>("ConnectionString")));
 
             builder.Services.AddScoped<ContractRepository>();
 
