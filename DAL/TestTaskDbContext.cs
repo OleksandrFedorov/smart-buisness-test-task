@@ -12,18 +12,7 @@ namespace TestTask.DAL
         public DbSet<ProductionRoom> ProductionRooms { get; set; }
         public DbSet<Contract> Contracts { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Contract>()
-                .HasOne(c => c.Product)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Contract>()
-                .HasOne(c => c.ProductionRoom)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Cascade);
-        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder) { }
 
         public async Task<bool> SaveAndCompareAffectedRowsAsync()
         {
